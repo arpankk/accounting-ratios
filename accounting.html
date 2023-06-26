@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Accounting Ratio Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: url("bgg.gif");
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .ratios-container {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .form-container {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .form-container h2,
+        .ratios-container h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .form-container label,
+        .ratios-container p {
+            display: inline-block;
+            width: 180px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .form-container input[type="number"] {
+            width: 200px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-container button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+
+        .ratios-container .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .ratios-container .row p {
+            margin: 0;
+        }
+    </style>
+    <script>
+        function calculateRatios() {
+            // Get input values
+            var currentAssets = parseFloat(document.getElementById("currentAssets").value);
+            var currentLiabilities = parseFloat(document.getElementById("currentLiabilities").value);
+            var inventory = parseFloat(document.getElementById("inventory").value);
+            var totalRevenue = parseFloat(document.getElementById("totalRevenue").value);
+            var costOfGoodsSold = parseFloat(document.getElementById("costOfGoodsSold").value);
+            var netProfit = parseFloat(document.getElementById("netProfit").value);
+            var totalAssets = parseFloat(document.getElementById("totalAssets").value);
+            var totalLiabilities = parseFloat(document.getElementById("totalLiabilities").value);
+            var totalEquity = parseFloat(document.getElementById("totalEquity").value);
+            var averageTotalAssets = parseFloat(document.getElementById("averageTotalAssets").value);
+            var averageInventory = parseFloat(document.getElementById("averageInventory").value);
+
+            // Calculate liquidity ratios
+            var currentRatio = currentAssets / currentLiabilities;
+            var quickRatio = (currentAssets - inventory) / currentLiabilities;
+
+            // Calculate profitability ratios
+            var grossProfitMargin = (totalRevenue - costOfGoodsSold) / totalRevenue;
+            var netProfitMargin = netProfit / totalRevenue;
+
+            // Calculate solvency ratios
+            var debtRatio = totalLiabilities / totalAssets;
+            var equityRatio = totalEquity / totalAssets;
+
+            // Calculate efficiency ratios
+            var assetTurnoverRatio = totalRevenue / averageTotalAssets;
+            var inventoryTurnoverRatio = costOfGoodsSold / averageInventory;
+
+            // Display the calculated ratios
+            document.getElementById("currentRatio").textContent = currentRatio.toFixed(2);
+            document.getElementById("quickRatio").textContent = quickRatio.toFixed(2);
+            document.getElementById("grossProfitMargin").textContent = (grossProfitMargin * 100).toFixed(2) + "%";
+            document.getElementById("netProfitMargin").textContent = (netProfitMargin * 100).toFixed(2) + "%";
+            document.getElementById("debtRatio").textContent = (debtRatio * 100).toFixed(2) + "%";
+            document.getElementById("equityRatio").textContent = (equityRatio * 100).toFixed(2) + "%";
+            document.getElementById("assetTurnoverRatio").textContent = assetTurnoverRatio.toFixed(2);
+            document.getElementById("inventoryTurnoverRatio").textContent = inventoryTurnoverRatio.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <h1><font color = White >Accounting Ratio Calculator</font></h1>
+    <div class="container">
+        <div class="form-container">
+            <h2>Enter Values</h2>
+            <label for="currentAssets">Current Assets:</label>
+            <input type="number" id="currentAssets"><br>
+            <label for="currentLiabilities">Current Liabilities:</label>
+            <input type="number" id="currentLiabilities"><br>
+            <label for="inventory">Inventory:</label>
+            <input type="number" id="inventory"><br>
+            <label for="totalRevenue">Total Revenue:</label>
+            <input type="number" id="totalRevenue"><br>
+            <label for="costOfGoodsSold">Cost of Goods Sold:</label>
+            <input type="number" id="costOfGoodsSold"><br>
+            <label for="netProfit">Net Profit:</label>
+            <input type="number" id="netProfit"><br>
+            <label for="totalAssets">Total Assets:</label>
+            <input type="number" id="totalAssets"><br>
+            <label for="totalLiabilities">Total Liabilities:</label>
+            <input type="number" id="totalLiabilities"><br>
+            <label for="totalEquity">Total Equity:</label>
+            <input type="number" id="totalEquity"><br>
+            <label for="averageTotalAssets">Average Total Assets:</label>
+            <input type="number" id="averageTotalAssets"><br>
+            <label for="averageInventory">Average Inventory:</label>
+            <input type="number" id="averageInventory"><br>
+            <button type="button" onclick="calculateRatios()">Calculate Ratios</button>
+        </div>
+        <div class="ratios-container">
+            <h2>Calculated Ratios</h2>
+            <div class="row">
+                <p>Current Ratio:</p>
+                <p id="currentRatio"></p>
+            </div>
+            <div class="row">
+                <p>Quick Ratio:</p>
+                <p id="quickRatio"></p>
+            </div>
+            <div class="row">
+                <p>Gross Profit Margin:</p>
+                <p id="grossProfitMargin"></p>
+            </div>
+            <div class="row">
+                <p>Net Profit Margin:</p>
+                <p id="netProfitMargin"></p>
+            </div>
+            <div class="row">
+                <p>Debt Ratio:</p>
+                <p id="debtRatio"></p>
+            </div>
+            <div class="row">
+                <p>Equity Ratio:</p>
+                <p id="equityRatio"></p>
+            </div>
+            <div class="row">
+                <p>Asset Turnover Ratio:</p>
+                <p id="assetTurnoverRatio"></p>
+            </div>
+            <div class="row">
+                <p>Inventory Turnover Ratio:</p>
+                <p id="inventoryTurnoverRatio"></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
